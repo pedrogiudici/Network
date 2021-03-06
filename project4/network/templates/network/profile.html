@@ -1,0 +1,50 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div id="profile">
+    <h2>{{profile}}</h2>
+    Following: {{follows.count}}
+    Followers: {{followers.count}}
+    <br>
+    {%if request.user != profile and user.is_authenticated %}
+    <form action="{%url 'follow'%}" method="POST">
+        {%csrf_token%}
+        <input type="hidden" name="profile" value="{{profile}}">
+    {%if fo_or_un%}
+        <input type="submit" name="button" class="btn btn-secondary btn-sm" value="Unfollow">
+    {%else%}
+        <input type="submit" name="button" class="btn btn-secondary btn-sm" value="Follow">
+    {%endif%}
+    </form>
+    {%endif%}
+    <ul>
+    </ul>
+</div>
+    {%for post in posts%}
+    <div class="post">
+        <h3 class="postuser">{{post.user}}</h3>
+        {%if request.user == post.user %}
+        <button class='btn btn-outline-primary btn-sm'>Edit</button>
+        {%endif%}
+        <div class="edittext">{{post.text}}</div>
+        <div class="timestamp">{{post.timestamp}}</div>
+        <div class="likes">
+            {%if request.user in post.likes.all%}
+            <i class="material-icons">favorite</i>
+            {%else%}
+            <i class="material-icons">favorite_border</i>
+            {%endif%}
+            <div>{{post.likes.count}}</div>
+        </div>
+        <div class="hidden" hidden>{{post.id}}</div>
+    </div>
+    {%endfor%}
+    <ul class="pagination">
+        {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

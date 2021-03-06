@@ -1,0 +1,51 @@
+.post{
+    width: 98%;
+    margin: auto;
+    border: solid 1px rgb(179, 177, 177);
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 5px;
+}
+h1{
+    margin-left: 12px;
+}
+textarea {
+    width: 100%;
+    border: solid 1px rgb(179, 177, 177);
+    border-radius: 5px;
+}
+.timestamp{
+    color: gray;
+}
+#profile{
+    margin: auto;
+    width: 400px;
+    border: solid 2px rgb(179, 177, 177);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: larger;
+    text-align: center;
+}
+#profile > button{
+    margin-top: 10px;
+}
+.postuser{
+    cursor: pointer;
+}
+.edittext{
+    display: block;
+    white-space: pre-line;
+}
+.material-icons{
+    cursor: pointer;
+    user-select: none;
+}
+.likes{
+    font-size: 18px;
+    display: flex;
+}
+.likes > div {
+    margin-left: 3px;
+}
